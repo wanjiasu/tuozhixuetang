@@ -1,0 +1,63 @@
+<!DOCTYPE html><html lang="en"><head><meta name="x-poe-datastore-behavior" content="local_only"><meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://code.jquery.com https://unpkg.com https://d3js.org https://threejs.org https://cdn.plot.ly https://stackpath.bootstrapcdn.com https://maps.googleapis.com https://cdn.tailwindcss.com https://ajax.googleapis.com https://kit.fontawesome.com https://cdn.datatables.net https://maxcdn.bootstrapcdn.com https://code.highcharts.com https://tako-static-assets-production.s3.amazonaws.com https://www.youtube.com https://fonts.googleapis.com https://fonts.gstatic.com https://pfst.cf2.poecdn.net https://puc.poecdn.net https://i.imgur.com https://wikimedia.org https://*.icons8.com https://*.giphy.com https://picsum.photos https://images.unsplash.com; frame-src 'self' https://www.youtube.com https://trytako.com; child-src 'self'; manifest-src 'self'; worker-src 'self'; upgrade-insecure-requests; block-all-mixed-content;">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What is a Generative Adversarial Network (GAN)? | AI Glossary</title>
+    <!-- Common styles from index.html -->
+    <style>
+        :root { --bg-dark: #0a0a1a; --bg-card: #1a1a3a; --text-primary: #f0f0f5; --text-secondary: #a0a0c0; --accent-primary-start: #8e2de2; --accent-primary-end: #4a00e0; --border-color: #3a3a5a; --font-heading: 'Poppins', sans-serif; --font-body: 'Roboto', sans-serif; }
+        body { background-color: var(--bg-dark); color: var(--text-primary); font-family: var(--font-body); line-height: 1.8; margin: 0; }
+        .container { max-width: 800px; margin: 0 auto; padding: 40px 20px; }
+        a { color: var(--accent-primary-start); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        .term-header h1 { font-size: 2.8rem; font-family: var(--font-heading); margin-bottom: 30px; }
+        .simple-explanation { background-color: var(--bg-card); border-left: 4px solid var(--accent-primary-start); padding: 25px; border-radius: 8px; margin-bottom: 40px; font-size: 1.1rem; }
+        .term-section h2 { font-size: 1.8rem; margin-top: 2.5rem; margin-bottom: 1.5rem; font-family: var(--font-heading); }
+        .related-terms ul { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; }
+        .related-terms li a { background-color: var(--bg-card); padding: 5px 12px; border-radius: 15px; color: var(--text-secondary); transition: all 0.2s; }
+        .related-terms li a:hover { background-color: var(--accent-primary-start); color: white; text-decoration: none; }
+    </style>
+<script src="https://puc.poecdn.net/authenticated_preview_page/syncedState.bd4eeeb8e8e02052ee92.js"></script></head>
+<body>
+    <!-- Header would go here -->
+    <div class="container">
+        <!-- WP: This is the single-glossary_term.php template -->
+        <article>
+            <header class="term-header">
+                <!-- WP: the_title() -->
+                <h1>Generative Adversarial Network (GAN)</h1>
+            </header>
+
+            <!-- WP: the_field('simple_explanation') -->
+            <div class="simple-explanation">
+                <strong>In simple terms:</strong> Imagine an art forger (the "Generator") trying to create a fake Picasso, and an art detective (the "Discriminator") trying to spot the fake. The forger keeps getting better at faking, and the detective keeps getting better at spotting fakes. Eventually, the forger becomes so good that the detective can't tell the difference. That's a GAN, used to create new, realistic data.
+            </div>
+
+            <div class="term-content">
+                <!-- WP: the_content() -->
+                <div class="term-section">
+                    <h2>Detailed Explanation</h2>
+                    <p>A Generative Adversarial Network (GAN) is a class of machine learning frameworks designed by Ian Goodfellow and his colleagues in 2014. It consists of two neural networks, the Generator and the Discriminator, which are trained simultaneously in a zero-sum game.</p>
+                    <p>The <strong>Generator's</strong> job is to create new data instances (like images, music, or text) that mimic a real dataset. The <strong>Discriminator's</strong> job is to evaluate this data and determine whether it is real (from the original dataset) or fake (created by the Generator). The two networks are in constant competition, which pushes both to improve until the Generator can create synthetic data that is nearly indistinguishable from real data.</p>
+                </div>
+
+                <!-- WP: the_field('example_of_use') -->
+                <div class="term-section">
+                    <h2>Example of Use</h2>
+                    <p>One of the most famous applications of GANs is creating hyper-realistic but entirely fake human faces, as seen on websites like "This Person Does Not Exist". They are also used in fashion design to create new clothing styles, in video games to generate realistic textures, and in medicine to synthesize medical images for training purposes.</p>
+                </div>
+
+                <!-- WP: Loop through the_field('related_terms') -->
+                <div class="term-section related-terms">
+                    <h2>Related Terms</h2>
+                    <ul>
+                        <li><a href="#">Generative AI</a></li>
+                        <li><a href="#">Neural Network</a></li>
+                        <li><a href="#">Deep Learning</a></li>
+                    </ul>
+                </div>
+            </div>
+        </article>
+    </div>
+
+
+</body></html>

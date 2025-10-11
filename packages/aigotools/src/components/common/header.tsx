@@ -50,6 +50,17 @@ export default function Header({ className }: { className?: string }) {
       )}
     >
       <Logo />
+      <div className="hidden md:flex items-center gap-6 ml-8">
+        <Link href="/tools" className="text-primary hover:text-primary-600 font-medium transition-colors">
+          Tools
+        </Link>
+        <Link href="/blog" className="text-primary hover:text-primary-600 font-medium transition-colors">
+          Blog
+        </Link>
+        <Link href="/glossary" className="text-primary hover:text-primary-600 font-medium transition-colors">
+          Glossary
+        </Link>
+      </div>
       <div className="flex items-center gap-2 sm:gap-4">
         <Link href={"https://github.com/someu/aigotools"} target="_blank">
           <Github className="text-primary cursor-pointer" size={16} />
