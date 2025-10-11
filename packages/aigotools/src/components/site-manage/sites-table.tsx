@@ -162,18 +162,21 @@ export default function SitesTable() {
           </DropdownTrigger>
           <DropdownMenu>
             <DropdownItem
+              key="dispatchAll"
               startContent={<Atom size={14} />}
               onClick={dispatchAllSite}
             >
               {t("dispatchAll")}
             </DropdownItem>
             <DropdownItem
+              key="stopAll"
               startContent={<StopCircle size={14} />}
               onClick={stopAllSite}
             >
               {t("stopAll")}
             </DropdownItem>
             <DropdownItem
+              key="new"
               startContent={<Plus size={14} />}
               onClick={() => setSite(createTemplateSite())}
             >

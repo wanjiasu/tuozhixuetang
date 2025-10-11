@@ -9,21 +9,27 @@ import { AppConfig } from "@/lib/config";
 const perSitemapCount = 2000;
 
 export async function generateSitemaps() {
-  await dbConnect();
+  try {
+    await dbConnect();
 
-  const siteCount = await SiteModel.countDocuments({
-    state: SiteState.published,
-  });
+    const siteCount = await SiteModel.countDocuments({
+      state: SiteState.published,
+    });
 
-  const siteMapCount = Math.ceil(siteCount / perSitemapCount);
+    const siteMapCount = Math.ceil(siteCount / perSitemapCount);
 
-  const siteMapIds = new Array(siteMapCount).fill(0).map((_, id) => {
-    return {
-      id,
-    };
-  });
+    const siteMapIds = new Array(siteMapCount).fill(0).map((_, id) => {
+      return {
+        id,
+      };
+    });
 
-  return [{ id: -1 }, ...siteMapIds];
+    return [{ id: -1 }, ...siteMapIds];
+  } catch (error) {
+    console.warn("Database connection failed during sitemap generation:", error);
+    // Return only the base sitemap when database is not available
+    return [{ id: -1 }];
+  }
 }
 
 export default async function sitemap({ id }: { id: number }) {
@@ -59,32 +65,37 @@ export default async function sitemap({ id }: { id: number }) {
     );
   } else {
     // sites page site map
-    await dbConnect();
+    try {
+      await dbConnect();
 
-    const siteKeyObjs = await SiteModel.find(
-      {
-        state: SiteState.published,
-      },
+      const siteKeyObjs = await SiteModel.find(
+        {
+          state: SiteState.published,
+        },
 
-      {
-        _id: 0,
-        siteKey: 1,
-      }
-    )
-      .skip(id * perSitemapCount)
-      .limit(perSitemapCount)
-      .lean();
+        {
+          _id: 0,
+          siteKey: 1,
+        }
+      )
+        .skip(id * perSitemapCount)
+        .limit(perSitemapCount)
+        .lean();
 
-    sitemapRoutes.push(
-      ...siteKeyObjs.map(({ siteKey }) => {
-        return {
-          url: `s/${siteKey}`,
-          lastModified: new Date(),
-          changeFrequency: "monthly" as const,
-          priority: 0.9,
-        };
-      })
-    );
+      sitemapRoutes.push(
+        ...siteKeyObjs.map(({ siteKey }) => {
+          return {
+            url: `s/${siteKey}`,
+            lastModified: new Date(),
+            changeFrequency: "monthly" as const,
+            priority: 0.9,
+          };
+        })
+      );
+    } catch (error) {
+      console.warn("Database connection failed during sitemap generation for id:", id, error);
+      // Return empty routes when database is not available
+    }
   }
 
   const sitemapData = sitemapRoutes.flatMap((route) =>
