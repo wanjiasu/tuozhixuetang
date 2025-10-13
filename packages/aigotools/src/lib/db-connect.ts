@@ -1,15 +1,16 @@
 import mongoose, { ConnectOptions } from "mongoose";
 
+import { AppConfig } from "@/lib/config";
+
 import { ensureSiteIndexes } from "../models/site";
 
-import { AppConfig } from "@/lib/config";
 declare global {
   var mongoose: any;
 }
 
 if (!AppConfig.mongoUri) {
   throw new Error(
-    "Please define the MONGODB_URI environment variable inside .env.local"
+    "Please define the MONGODB_URI environment variable inside .env.local",
   );
 }
 

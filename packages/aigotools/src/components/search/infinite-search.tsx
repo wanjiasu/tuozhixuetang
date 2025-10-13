@@ -7,12 +7,12 @@ import { useSearchParams } from "next/navigation";
 import { TicketPlus } from "lucide-react";
 import { useEffect } from "react";
 
-import EmptyImage from "./empty-image";
-
 import Search from "@/components/index/search";
 import { searchSites } from "@/lib/actions";
 import SiteGroup from "@/components/common/sites-group";
 import { Site } from "@/models/site";
+
+import EmptyImage from "./empty-image";
 
 export default function InfiniteSearch() {
   const searchParams = useSearchParams();

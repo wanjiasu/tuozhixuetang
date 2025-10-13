@@ -1,6 +1,6 @@
-import { ProcessStage, SiteState } from "./constants";
-
 import { Site } from "@/models/site";
+
+import { ProcessStage, SiteState } from "./constants";
 
 export const createTemplateSite = (site: Partial<Site> = {}) => {
   const newSite: Omit<Site, "_id"> = {

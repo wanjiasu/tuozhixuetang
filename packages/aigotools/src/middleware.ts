@@ -29,13 +29,13 @@ export default clerkMiddleware(
 
     const nextPathname = req.nextUrl.pathname;
 
-    if (/^\/(api|trpc|sitemap)/.test(nextPathname)) {
+    if (/^\/(api|trpc|sitemap|studio)/.test(nextPathname)) {
       return;
     }
 
     return intlMiddleware(req);
   },
-  { debug: AppConfig.debugClerk }
+  { debug: AppConfig.debugClerk },
 );
 
 export const config = {

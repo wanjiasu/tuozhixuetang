@@ -4,13 +4,13 @@ import { ChangeEvent, useCallback, useState } from "react";
 import { toast } from "react-toastify";
 import { useTranslations } from "next-intl";
 
+import { uploadFormDataToS3 } from "@/lib/s3";
+import { AppConfig } from "@/lib/config";
+
 import { uploadFormDataToMinio } from "../../lib/minio";
 import { uploadFormDataToCos } from "../../lib/cos";
 
 import Loading from "./loading";
-
-import { uploadFormDataToS3 } from "@/lib/s3";
-import { AppConfig } from "@/lib/config";
 
 export default function ImageUpload({
   value,
@@ -50,7 +50,7 @@ export default function ImageUpload({
           onChange(res[0]);
         } else {
           throw new Error(
-            `Unsuppored image storage: ${AppConfig.imageStorage}`
+            `Unsuppored image storage: ${AppConfig.imageStorage}`,
           );
         }
       } catch (error) {
@@ -60,7 +60,7 @@ export default function ImageUpload({
         setUploading(false);
       }
     },
-    [onChange, t, uploading]
+    [onChange, t, uploading],
   );
 
   return value ? (

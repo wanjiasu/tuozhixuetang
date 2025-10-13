@@ -26,7 +26,11 @@ export async function generateSitemaps() {
 
     return [{ id: -1 }, ...siteMapIds];
   } catch (error) {
-    console.warn("Database connection failed during sitemap generation:", error);
+    console.warn(
+      "Database connection failed during sitemap generation:",
+      error,
+    );
+
     // Return only the base sitemap when database is not available
     return [{ id: -1 }];
   }
@@ -61,7 +65,7 @@ export default async function sitemap({ id }: { id: number }) {
         lastModified: new Date(),
         changeFrequency: "monthly",
         priority: 0.5,
-      }
+      },
     );
   } else {
     // sites page site map
@@ -76,7 +80,7 @@ export default async function sitemap({ id }: { id: number }) {
         {
           _id: 0,
           siteKey: 1,
-        }
+        },
       )
         .skip(id * perSitemapCount)
         .limit(perSitemapCount)
@@ -90,10 +94,14 @@ export default async function sitemap({ id }: { id: number }) {
             changeFrequency: "monthly" as const,
             priority: 0.9,
           };
-        })
+        }),
       );
     } catch (error) {
-      console.warn("Database connection failed during sitemap generation for id:", id, error);
+      console.warn(
+        "Database connection failed during sitemap generation for id:",
+        id,
+        error,
+      );
       // Return empty routes when database is not available
     }
   }
@@ -104,7 +112,7 @@ export default async function sitemap({ id }: { id: number }) {
         ...route,
         url: [AppConfig.siteUrl, locale, route.url].filter(Boolean).join("/"),
       };
-    })
+    }),
   );
 
   return sitemapData;

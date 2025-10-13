@@ -27,9 +27,6 @@ import { useQuery } from "@tanstack/react-query";
 import { debounce } from "lodash";
 import { Atom, Axe, Plus, SearchIcon, StopCircle } from "lucide-react";
 
-import SiteEdit from "./site-edit";
-import SiteOperation from "./site-operation";
-
 import { ProcessStage, SiteState } from "@/lib/constants";
 import { Site } from "@/models/site";
 import {
@@ -43,6 +40,9 @@ import Loading from "@/components/common/loading";
 import EmptyImage from "@/components/search/empty-image";
 import { Link } from "@/navigation";
 import { createTemplateSite } from "@/lib/create-template-site";
+
+import SiteOperation from "./site-operation";
+import SiteEdit from "./site-edit";
 
 export default function SitesTable() {
   const t = useTranslations("siteManage");
@@ -121,7 +121,7 @@ export default function SitesTable() {
         pending: t("processing"),
         success: t("success"),
         error: t("fail"),
-      }
+      },
     );
   }, [handleSearch, searchParams, t]);
 
@@ -147,7 +147,7 @@ export default function SitesTable() {
         pending: t("processing"),
         success: t("success"),
         error: t("fail"),
-      }
+      },
     );
   }, [handleSearch, searchParams, t]);
 
@@ -258,7 +258,7 @@ export default function SitesTable() {
             1000,
             {
               maxWait: 5000,
-            }
+            },
           )}
         />
       </div>
@@ -310,7 +310,7 @@ export default function SitesTable() {
                       {
                         "bg-primary-500 opacity-80":
                           site.state !== SiteState.published,
-                      }
+                      },
                     )}
                   >
                     {t(site.state)}
@@ -327,7 +327,7 @@ export default function SitesTable() {
                           site.processStage === ProcessStage.processing,
                         "bg-primary-500 opacity-80":
                           site.processStage === ProcessStage.pending,
-                      }
+                      },
                     )}
                   >
                     {site.processStage === ProcessStage.processing && (

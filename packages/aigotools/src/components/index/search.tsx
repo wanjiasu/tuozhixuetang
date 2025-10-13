@@ -13,11 +13,11 @@ import clsx from "clsx";
 import { useTranslations } from "next-intl";
 import { useQuery } from "@tanstack/react-query";
 
-import CategoryTag from "./cateogry-tag";
-
 import { getFeaturedCategories } from "@/lib/actions";
 import { Link, useRouter } from "@/navigation";
 import Container from "@/components/common/container";
+
+import CategoryTag from "./cateogry-tag";
 
 export default function Search({
   defaultSearch,
@@ -46,11 +46,11 @@ export default function Search({
     (newRecord: string) => {
       window.localStorage.setItem(
         "histories",
-        JSON.stringify([newRecord, ...histories].slice(10))
+        JSON.stringify([newRecord, ...histories].slice(10)),
       );
       loadHistories();
     },
-    [histories, loadHistories]
+    [histories, loadHistories],
   );
 
   const clearHistories = useCallback(() => {
@@ -154,7 +154,7 @@ export default function Search({
                 active={item.name === category}
                 onClick={() => {
                   const url = `/search?s=${encodeURIComponent(
-                    value
+                    value,
                   )}&c=${encodeURIComponent(item.name)}`;
 
                   router.push(url);

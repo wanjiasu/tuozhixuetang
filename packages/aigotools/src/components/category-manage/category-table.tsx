@@ -21,14 +21,14 @@ import { debounce } from "lodash";
 import { Plus } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 
-import CategoryEdit from "./category-edit";
-import CategoryOperation from "./category-operation";
-
 import { CategorySearchForm, managerSearchCategories } from "@/lib/actions";
 import Loading from "@/components/common/loading";
 import EmptyImage from "@/components/search/empty-image";
 import { Category } from "@/models/category";
 import { createTemplateCategory } from "@/lib/create-template-category";
+
+import CategoryOperation from "./category-operation";
+import CategoryEdit from "./category-edit";
 
 export default function CategoryTable() {
   const t = useTranslations("categoryManage");
@@ -83,12 +83,15 @@ export default function CategoryTable() {
   });
 
   const topCategoryNameMap = useMemo(() => {
-    return allTopCategories.reduce((t, c) => {
-      return {
-        ...t,
-        [c._id]: c.name,
-      };
-    }, {} as Record<string, string>);
+    return allTopCategories.reduce(
+      (t, c) => {
+        return {
+          ...t,
+          [c._id]: c.name,
+        };
+      },
+      {} as Record<string, string>,
+    );
   }, [allTopCategories]);
 
   console.log(topCategoryNameMap);
@@ -156,7 +159,7 @@ export default function CategoryTable() {
             1000,
             {
               maxWait: 5000,
-            }
+            },
           )}
         />
       </div>

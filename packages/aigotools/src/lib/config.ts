@@ -8,7 +8,7 @@ export const AppConfig = {
   // clerk
   debugClerk: process.env.CLERK_DEBUG === "true",
   manageUsers: (process.env.NEXT_PUBLIC_MANAGER_USER?.split(",") || []).filter(
-    Boolean
+    Boolean,
   ),
 
   // mongo
@@ -49,7 +49,7 @@ export const AppConfig = {
   get crawlerAuthToken() {
     return Buffer.from(
       `${this.crawlerAuthUser}:${this.crawlerAuthPassword}`,
-      "utf8"
+      "utf8",
     ).toString("base64");
   },
 };

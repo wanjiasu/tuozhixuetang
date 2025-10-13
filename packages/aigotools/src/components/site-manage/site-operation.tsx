@@ -56,7 +56,7 @@ export default function SiteOperation({
   );
 
   const stopSite = useCallback(
-    async (e: any) => {
+    async (_e: any) => {
       if (operationing) {
         return false;
       }
@@ -76,7 +76,7 @@ export default function SiteOperation({
   );
 
   const handleDeleteSite = useCallback(
-    async (e: any) => {
+    async (_e: any) => {
       if (operationing) {
         return false;
       }
@@ -96,7 +96,7 @@ export default function SiteOperation({
   );
 
   const dispatchSite = useCallback(
-    async (e: any) => {
+    async (_e: any) => {
       if (operationing) {
         return false;
       }

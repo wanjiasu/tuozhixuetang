@@ -18,13 +18,13 @@ import {
   useUser,
 } from "@clerk/nextjs";
 
+import { AppConfig } from "@/lib/config";
+import { Link } from "@/navigation";
+
 import Container from "./container";
 import Logo from "./logo";
 import { ThemeSwitcher } from "./theme-switcher";
 import LanguageSwitcher from "./language-switcher";
-
-import { AppConfig } from "@/lib/config";
-import { Link } from "@/navigation";
 
 export default function Header({ className }: { className?: string }) {
   const t = useTranslations("header");
@@ -46,18 +46,27 @@ export default function Header({ className }: { className?: string }) {
     <Container
       className={clsx(
         "flex items-center justify-between h-20 sm:h-24",
-        className
+        className,
       )}
     >
       <Logo />
       <div className="hidden md:flex items-center gap-6 ml-8">
-        <Link href="/tools" className="text-primary hover:text-primary-600 font-medium transition-colors">
+        <Link
+          className="text-primary hover:text-primary-600 font-medium transition-colors"
+          href="/tools"
+        >
           Tools
         </Link>
-        <Link href="/blog" className="text-primary hover:text-primary-600 font-medium transition-colors">
+        <Link
+          className="text-primary hover:text-primary-600 font-medium transition-colors"
+          href="/blog"
+        >
           Blog
         </Link>
-        <Link href="/glossary" className="text-primary hover:text-primary-600 font-medium transition-colors">
+        <Link
+          className="text-primary hover:text-primary-600 font-medium transition-colors"
+          href="/glossary"
+        >
           Glossary
         </Link>
       </div>
