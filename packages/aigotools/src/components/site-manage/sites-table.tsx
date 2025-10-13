@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useState } from "react";
+import { useCallback, useState, forwardRef, useImperativeHandle } from "react";
 import { useTranslations } from "next-intl";
 import { toast } from "react-toastify";
 import {
@@ -25,7 +25,7 @@ import dayjs from "dayjs";
 import clsx from "clsx";
 import { useQuery } from "@tanstack/react-query";
 import { debounce } from "lodash";
-import { Atom, Axe, Plus, SearchIcon, StopCircle } from "lucide-react";
+import { Atom, Axe, Plus, SearchIcon, StopCircle, ListPlus } from "lucide-react";
 
 import { ProcessStage, SiteState } from "@/lib/constants";
 import { Site } from "@/models/site";
@@ -43,11 +43,13 @@ import { createTemplateSite } from "@/lib/create-template-site";
 
 import SiteOperation from "./site-operation";
 import SiteEdit from "./site-edit";
+import BatchSiteAdd from "./batch-site-add";
 
-export default function SitesTable() {
+export default forwardRef<{ refetch: () => void }, {}>(function SitesTable(props, ref) {
   const t = useTranslations("siteManage");
 
   const [site, setSite] = useState<Site | undefined>(undefined);
+  const [showBatchAdd, setShowBatchAdd] = useState(false);
   const [searchParams, setSearchParams] = useState<SearchParams>({
     page: 1,
     size: 15,
@@ -84,6 +86,10 @@ export default function SitesTable() {
       return pdata;
     },
   });
+
+  useImperativeHandle(ref, () => ({
+    refetch: handleSearch,
+  }));
 
   const { data: categories } = useQuery({
     queryKey: ["all-second-categories"],
@@ -181,6 +187,13 @@ export default function SitesTable() {
               onClick={() => setSite(createTemplateSite())}
             >
               {t("new")}
+            </DropdownItem>
+            <DropdownItem
+              key="batchAdd"
+              startContent={<ListPlus size={14} />}
+              onClick={() => setShowBatchAdd(true)}
+            >
+              {t("batchAdd")}
             </DropdownItem>
           </DropdownMenu>
         </Dropdown>
@@ -389,6 +402,14 @@ export default function SitesTable() {
           handleSearch();
         }}
       />
+      <BatchSiteAdd
+        isOpen={showBatchAdd}
+        onClose={() => setShowBatchAdd(false)}
+        onSuccess={() => {
+          setShowBatchAdd(false);
+          handleSearch();
+        }}
+      />
     </div>
   );
-}
+});

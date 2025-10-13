@@ -94,7 +94,7 @@ export default function Header({ className }: { className?: string }) {
               {t("submit")}
             </Button>
           </Link>
-          {isManager && (
+          {/* {isManager && (
             <Link href={"/dashboard"} target="_blank">
               <Button
                 className="font-semibold"
@@ -105,7 +105,7 @@ export default function Header({ className }: { className?: string }) {
                 {t("dashboard")}
               </Button>
             </Link>
-          )}
+          )} */}
           <Dropdown placement="bottom-end">
             <DropdownTrigger>
               <Avatar

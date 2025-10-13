@@ -72,7 +72,7 @@ export default function Form() {
       >
         {t("submit")}
       </Button>
-      <div className="text-sm text-primary-400 break-all">
+      <div className="text-sm text-primary-400 dark:text-primary-500 break-all">
         {t("request", {
           code: `<a href="${AppConfig.siteUrl}" title="${AppConfig.siteName}">${AppConfig.siteName}</a>`,
         })}

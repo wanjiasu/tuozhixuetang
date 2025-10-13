@@ -15,12 +15,12 @@ export default function Title() {
       <h2
         className={clsx(
           istokWeb.className,
-          "mt-10 sm:mt-16 text-3xl sm:text-5xl leading-[1.3] font-bold text-primary-800",
+          "mt-10 sm:mt-16 text-3xl sm:text-5xl leading-[1.3] font-bold text-primary-800 dark:text-primary-200",
         )}
       >
         {t("title")}
       </h2>
-      <div className="text-sm sm:text-lg mt-2 font-normal text-primary-500">
+      <div className="text-sm sm:text-lg mt-2 font-normal text-primary-500 dark:text-primary-400">
         {t("subTitle")}
       </div>
     </div>

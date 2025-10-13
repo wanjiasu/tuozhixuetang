@@ -218,7 +218,7 @@ export default function SiteEdit({
             /> */}
 
             <Textarea
-              label={t("desceription")}
+              label={t("description")}
               size="sm"
               value={formValues.desceription}
               {...register("desceription")}

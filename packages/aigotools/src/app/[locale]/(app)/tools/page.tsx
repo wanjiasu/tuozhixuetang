@@ -30,30 +30,30 @@ export default async function ToolsPage() {
 
   return (
     <Container className="mt-4">
-      <div className="text-center py-16 border-b border-primary-200">
-        <h1 className="text-4xl sm:text-5xl font-bold text-primary-800 mb-4">
+      <div className="text-center py-16 border-b border-primary-200 dark:border-primary-700">
+        <h1 className="text-4xl sm:text-5xl font-bold text-primary-800 dark:text-primary-200 mb-4">
           AI Tools Directory
         </h1>
-        <p className="text-primary-600 max-w-2xl mx-auto text-lg">
+        <p className="text-primary-600 dark:text-primary-400 max-w-2xl mx-auto text-lg">
           Search, filter, and find the perfect AI tool for any task.
         </p>
       </div>
 
       {/* Filters */}
-      <div className="bg-primary-50 p-6 rounded-xl my-10 grid grid-cols-1 md:grid-cols-4 gap-4 items-center">
+      <div className="bg-primary-50 dark:bg-primary-800 p-6 rounded-xl my-10 grid grid-cols-1 md:grid-cols-4 gap-4 items-center">
         <input
-          className="w-full p-3 bg-white border border-primary-200 text-primary-800 rounded-lg text-base"
+          className="w-full p-3 bg-white dark:bg-primary-700 border border-primary-200 dark:border-primary-600 text-primary-800 dark:text-primary-200 rounded-lg text-base"
           placeholder="Search by tool name..."
           type="text"
         />
-        <select className="w-full p-3 bg-white border border-primary-200 text-primary-800 rounded-lg text-base">
+        <select className="w-full p-3 bg-white dark:bg-primary-700 border border-primary-200 dark:border-primary-600 text-primary-800 dark:text-primary-200 rounded-lg text-base">
           <option>All Categories</option>
           <option>AI Writing</option>
           <option>Image Generation</option>
           <option>Video Generation</option>
           <option>Productivity</option>
         </select>
-        <select className="w-full p-3 bg-white border border-primary-200 text-primary-800 rounded-lg text-base">
+        <select className="w-full p-3 bg-white dark:bg-primary-700 border border-primary-200 dark:border-primary-600 text-primary-800 dark:text-primary-200 rounded-lg text-base">
           <option>All Pricing</option>
           <option>Free</option>
           <option>Freemium</option>
@@ -69,11 +69,11 @@ export default async function ToolsPage() {
         {allSites.map((site) => (
           <a
             key={site._id}
-            className="bg-white border border-primary-200 rounded-xl p-6 flex flex-col hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
+            className="bg-white dark:bg-primary-800 border border-primary-200 dark:border-primary-700 rounded-xl p-6 flex flex-col hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
             href={`/s/${site.siteKey}`}
           >
             <div className="flex items-center gap-4 mb-4">
-              <div className="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center">
+              <div className="w-12 h-12 bg-primary-100 dark:bg-primary-700 rounded-lg flex items-center justify-center">
                 {site.snapshot ? (
                   <img
                     alt={site.name}
@@ -81,23 +81,23 @@ export default async function ToolsPage() {
                     src={site.snapshot}
                   />
                 ) : (
-                  <span className="text-primary-600 font-bold text-lg">
+                  <span className="text-primary-600 dark:text-primary-300 font-bold text-lg">
                     {site.name.charAt(0).toUpperCase()}
                   </span>
                 )}
               </div>
-              <h3 className="text-xl font-semibold text-primary-800 flex-1">
+              <h3 className="text-xl font-semibold text-primary-800 dark:text-primary-200 flex-1">
                 {site.name}
               </h3>
             </div>
-            <p className="text-primary-600 flex-grow mb-4 line-clamp-3">
+            <p className="text-primary-600 dark:text-primary-400 flex-grow mb-4 line-clamp-3">
               {site.desceription || "Discover this amazing AI tool."}
             </p>
             <div className="flex flex-wrap gap-2">
               {site.categories?.slice(0, 2).map((category, index) => (
                 <span
                   key={index}
-                  className="bg-primary-100 text-primary-700 px-2 py-1 rounded text-sm"
+                  className="bg-primary-100 dark:bg-primary-700 text-primary-700 dark:text-primary-200 px-2 py-1 rounded text-sm"
                 >
                   {typeof category === "string" ? category : "AI Tool"}
                 </span>

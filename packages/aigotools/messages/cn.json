@@ -131,7 +131,20 @@
     "stop": "停止",
     "stopAll": "停止所有",
     "delete": "删除",
-    "deleteFailed": "删除失败"
+    "deleteFailed": "删除失败",
+    "batchAdd": "批量新增",
+    "batchAddTitle": "批量新增站点",
+    "batchAddDescription": "请在下方文本框中输入网站链接，每行一个链接。系统将自动验证链接格式并创建站点。",
+    "websiteUrls": "网站链接",
+    "batchAddPlaceholder": "https://example1.com\nhttps://example2.com\nhttps://example3.com",
+    "batchAddHint": "提示：每行输入一个完整的网站链接，支持 http:// 或 https:// 开头的链接",
+    "cancel": "取消",
+    "batchCreate": "批量创建",
+    "requireUrls": "请输入至少一个网站链接",
+    "invalidUrls": "以下链接格式不正确",
+    "batchCreateSuccess": "批量创建成功",
+    "batchCreatePartialFail": "部分创建失败",
+    "batchCreateFailed": "批量创建失败"
   },
   "siteEdit": {
     "newTitle": "新建",
@@ -188,8 +201,24 @@
     "featured": "推荐",
     "weight": "权重"
   },
+  "blog": {
+    "title": "博客",
+    "description": "最新的AI资讯和见解",
+    "readMore": "阅读更多",
+    "publishedAt": "发布于",
+    "author": "作者",
+    "categories": "分类",
+    "noPostsFound": "暂无博客文章",
+    "latestPosts": "最新文章"
+  },
   "categories": {
     "metadata": { "title": "分类" },
     "loadFailed": "加载失败"
+  },
+  "glossary": {
+    "metadata": { "title": "AI术语表" }
+  },
+  "tools": {
+    "metadata": { "title": "AI工具" }
   }
 }

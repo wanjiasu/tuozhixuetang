@@ -14,7 +14,7 @@ export default function Hero() {
     <div
       className={clsx(
         istokWeb.className,
-        "mt-10 sm:mt-16 text-3xl sm:text-5xl max-w-[1000px] !leading-[1.3] mx-auto font-bold text-center text-primary-800",
+        "mt-10 sm:mt-16 text-3xl sm:text-5xl max-w-[1000px] !leading-[1.3] mx-auto font-bold text-center text-primary-800 dark:text-primary-200",
       )}
     >
       {t("slogan")}

@@ -131,7 +131,20 @@
     "stop": "Stop",
     "stopAll": "Stop All",
     "delete": "Delete",
-    "deleteFailed": "Delete Failed"
+    "deleteFailed": "Delete Failed",
+    "batchAdd": "Batch Add",
+    "batchAddTitle": "Batch Add Sites",
+    "batchAddDescription": "Please enter website URLs in the text box below, one URL per line. The system will automatically validate the URL format and create sites.",
+    "websiteUrls": "Website URLs",
+    "batchAddPlaceholder": "https://example1.com\nhttps://example2.com\nhttps://example3.com",
+    "batchAddHint": "Tip: Enter one complete website URL per line, supporting URLs starting with http:// or https://",
+    "cancel": "Cancel",
+    "batchCreate": "Batch Create",
+    "requireUrls": "Please enter at least one website URL",
+    "invalidUrls": "The following URLs have incorrect format",
+    "batchCreateSuccess": "Batch creation successful",
+    "batchCreatePartialFail": "Partial creation failed",
+    "batchCreateFailed": "Batch creation failed"
   },
   "siteEdit": {
     "newTitle": "New",
@@ -188,8 +201,24 @@
     "featured": "Featured",
     "weight": "Weight"
   },
+  "blog": {
+    "title": "Blog",
+    "description": "Latest AI news and insights",
+    "readMore": "Read More",
+    "publishedAt": "Published at",
+    "author": "Author",
+    "categories": "Categories",
+    "noPostsFound": "No blog posts found",
+    "latestPosts": "Latest Posts"
+  },
   "categories": {
     "metadata": { "title": "Categories" },
     "loadFailed": "Load Failed"
+  },
+  "glossary": {
+    "metadata": { "title": "AI Glossary" }
+  },
+  "tools": {
+    "metadata": { "title": "AI Tools" }
   }
 }

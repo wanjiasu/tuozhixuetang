@@ -762,3 +762,57 @@ export async function getAllCategories() {
     throw error;
   }
 }
+
+export async function batchCreateSites(urls: string[]) {
+  const user = await assertIsManager();
+  await dbConnect();
+
+  let created = 0;
+  let failed = 0;
+  const results = [];
+
+  for (const url of urls) {
+    try {
+      const urlObj = new URL(url);
+      const origin = urlObj.origin;
+      const siteKey = urlObj.hostname.replace(/[^\w]/g, "_");
+
+      // 检查站点是否已存在
+      const existingSite = await SiteModel.findOne({ url: origin });
+      if (existingSite) {
+        results.push({ url, status: "exists", message: "Site already exists" });
+        continue;
+      }
+
+      // 创建新站点 - 只设置必需字段，其他字段使用默认值
+      const newSite = new SiteModel({
+        url: origin,
+        siteKey: siteKey,
+        userId: user.id,
+        state: SiteState.unpublished,
+        processStage: ProcessStage.pending,
+        createdAt: Date.now(),
+        updatedAt: Date.now(),
+      });
+
+      await newSite.save();
+      created++;
+      results.push({ url, status: "created", siteId: newSite._id });
+    } catch (error) {
+      failed++;
+      results.push({ 
+        url, 
+        status: "failed", 
+        message: error instanceof Error ? error.message : "Unknown error" 
+      });
+    }
+  }
+
+  return {
+    success: true,
+    created,
+    failed,
+    total: urls.length,
+    results,
+  };
+}

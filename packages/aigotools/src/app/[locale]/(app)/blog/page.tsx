@@ -81,11 +81,11 @@ export default async function BlogPage() {
   return (
     <Container className="mt-4">
       {/* Hero Section */}
-      <div className="text-center py-16 border-b border-primary-200">
-        <h1 className="text-4xl sm:text-5xl font-bold text-primary-800 mb-4">
+      <div className="text-center py-16 border-b border-primary-200 dark:border-primary-700">
+        <h1 className="text-4xl sm:text-5xl font-bold text-primary-800 dark:text-primary-200 mb-4">
           Latest from the Blog
         </h1>
-        <p className="text-primary-600 max-w-2xl mx-auto text-lg">
+        <p className="text-primary-600 dark:text-primary-400 max-w-2xl mx-auto text-lg">
           Stay ahead with our latest articles, tutorials, and AI industry news.
         </p>
       </div>
@@ -93,7 +93,7 @@ export default async function BlogPage() {
       {/* Featured Post */}
       {posts.length > 0 && (
         <div className="my-16">
-          <div className="bg-gradient-to-r from-primary-50 to-primary-100 rounded-2xl p-8 lg:p-12 shadow-lg hover:shadow-xl transition-shadow duration-300">
+          <div className="bg-gradient-to-r from-primary-50 to-primary-100 dark:from-primary-900 dark:to-primary-800 rounded-2xl p-8 lg:p-12 shadow-lg hover:shadow-xl transition-shadow duration-300">
             <div className="grid lg:grid-cols-2 gap-8 items-center">
               <div>
                 <div className="flex items-center gap-2 mb-4">
@@ -101,15 +101,15 @@ export default async function BlogPage() {
                     Featured
                   </span>
                   {posts[0].categories?.[0] && (
-                    <span className="bg-primary-200 text-primary-700 px-3 py-1 rounded-full text-sm">
+                    <span className="bg-primary-200 dark:bg-primary-700 text-primary-700 dark:text-primary-200 px-3 py-1 rounded-full text-sm">
                       {posts[0].categories[0].title}
                     </span>
                   )}
                 </div>
-                <h2 className="text-3xl font-bold text-primary-800 mb-4">
+                <h2 className="text-3xl font-bold text-primary-800 dark:text-primary-200 mb-4">
                   {posts[0].title}
                 </h2>
-                <p className="text-primary-600 mb-6 text-lg">
+                <p className="text-primary-600 dark:text-primary-400 mb-6 text-lg">
                   {posts[0].body?.[0]?.children?.[0]?.text?.substring(0, 150) ||
                     "Read this amazing article..."}
                   ...
@@ -165,8 +165,8 @@ export default async function BlogPage() {
                       .url()}
                   />
                 ) : (
-                  <div className="w-full h-80 bg-primary-200 rounded-xl flex items-center justify-center">
-                    <span className="text-primary-600 text-lg">No Image</span>
+                  <div className="w-full h-80 bg-primary-200 dark:bg-primary-700 rounded-xl flex items-center justify-center">
+                    <span className="text-primary-600 dark:text-primary-300 text-lg">No Image</span>
                   </div>
                 )}
               </div>
@@ -177,13 +177,13 @@ export default async function BlogPage() {
 
       {/* Blog Posts Grid */}
       <div className="mb-16">
-        <h2 className="text-3xl font-bold text-primary-800 mb-8">
+        <h2 className="text-3xl font-bold text-primary-800 dark:text-primary-200 mb-8">
           Recent Articles
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {posts.slice(1).map((post) => (
             <Link key={post._id} href={`/blog/${post.slug.current}`}>
-              <article className="bg-white border border-primary-200 rounded-xl overflow-hidden shadow-md hover:shadow-xl hover:-translate-y-2 transition-all duration-300 cursor-pointer">
+              <article className="bg-white dark:bg-primary-800 border border-primary-200 dark:border-primary-700 rounded-xl overflow-hidden shadow-md hover:shadow-xl hover:-translate-y-2 transition-all duration-300 cursor-pointer">
                 <div className="relative">
                   {post.mainImage ? (
                     <img
@@ -192,8 +192,8 @@ export default async function BlogPage() {
                       src={urlFor(post.mainImage).width(400).height(250).url()}
                     />
                   ) : (
-                    <div className="w-full h-48 bg-primary-100 flex items-center justify-center">
-                      <span className="text-primary-600">No Image</span>
+                    <div className="w-full h-48 bg-primary-100 dark:bg-primary-700 flex items-center justify-center">
+                      <span className="text-primary-600 dark:text-primary-300">No Image</span>
                     </div>
                   )}
                   {post.categories?.[0] && (
@@ -203,10 +203,10 @@ export default async function BlogPage() {
                   )}
                 </div>
                 <div className="p-6">
-                  <h3 className="text-xl font-semibold text-primary-800 mb-3 line-clamp-2">
+                  <h3 className="text-xl font-semibold text-primary-800 dark:text-primary-200 mb-3 line-clamp-2">
                     {post.title}
                   </h3>
-                  <p className="text-primary-600 mb-4 line-clamp-3">
+                  <p className="text-primary-600 dark:text-primary-400 mb-4 line-clamp-3">
                     {post.body?.[0]?.children?.[0]?.text?.substring(0, 120) ||
                       "Read this interesting article..."}
                     ...
@@ -223,11 +223,11 @@ export default async function BlogPage() {
                             .url()}
                         />
                       )}
-                      <span className="text-primary-700 text-sm font-medium">
+                      <span className="text-primary-700 dark:text-primary-300 text-sm font-medium">
                         {post.author.name}
                       </span>
                     </div>
-                    <span className="text-primary-500 text-sm">
+                    <span className="text-primary-500 dark:text-primary-400 text-sm">
                       {new Date(post.publishedAt).toLocaleDateString()}
                     </span>
                   </div>
