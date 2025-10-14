@@ -35,6 +35,7 @@ import {
   managerSearchCategories,
   managerSearchSites,
   stopAllSitesCrawl,
+  publishAllSites,
 } from "@/lib/actions";
 import Loading from "@/components/common/loading";
 import EmptyImage from "@/components/search/empty-image";
@@ -157,6 +158,61 @@ export default forwardRef<{ refetch: () => void }, {}>(function SitesTable(props
     );
   }, [handleSearch, searchParams, t]);
 
+  const dispatchAllUnprocessedSite = useCallback(async () => {
+    toast.promise(
+      async () => {
+        try {
+          const params = { ...searchParams } as Omit<
+            SearchParams,
+            "page" | "size"
+          >;
+
+          delete (params as any).page;
+          delete (params as any).size;
+          // 仅下发处理阶段不等于成功的站点
+          (params as any).processStage = { $ne: ProcessStage.success } as any;
+          await dispatchAllSitesCrawl(params as any);
+          await handleSearch();
+        } catch (error) {
+          console.log(error);
+          throw error;
+        }
+      },
+      {
+        pending: t("processing"),
+        success: t("success"),
+        error: t("fail"),
+      },
+    );
+  }, [handleSearch, searchParams, t]);
+
+  const publishAllSite = useCallback(async () => {
+    toast.promise(
+      async () => {
+        try {
+          const params = { ...searchParams } as Omit<
+            SearchParams,
+            "page" | "size"
+          >;
+
+          delete (params as any).page;
+          delete (params as any).size;
+          // 仅发布未发布的站点，保留当前筛选条件（分类、搜索等）
+          await publishAllSites(params);
+          await handleSearch();
+        } catch (error) {
+          console.log(error);
+          throw error;
+        }
+      },
+      {
+        pending: t("processing"),
+        success: t("success"),
+        error: t("fail"),
+      },
+    );
+  }, [handleSearch, searchParams, t]);
+
   return (
     <div className="mt-4 relative py-4">
       <div className="flex items-center justify-end gap-4">
@@ -175,11 +231,25 @@ export default forwardRef<{ refetch: () => void }, {}>(function SitesTable(props
               {t("dispatchAll")}
             </DropdownItem>
             <DropdownItem
+              key="dispatchAllUnprocessed"
+              startContent={<Atom size={14} />}
+              onClick={dispatchAllUnprocessedSite}
+            >
+              {t("dispatchAllUnprocessed")}
+            </DropdownItem>
+            <DropdownItem
               key="stopAll"
               startContent={<StopCircle size={14} />}
               onClick={stopAllSite}
             >
               {t("stopAll")}
+            </DropdownItem>
+            <DropdownItem
+              key="publishAll"
+              startContent={<Atom size={14} />}
+              onClick={publishAllSite}
+            >
+              {t("publishAll")}
             </DropdownItem>
             <DropdownItem
               key="new"

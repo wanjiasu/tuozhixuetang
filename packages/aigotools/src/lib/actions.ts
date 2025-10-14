@@ -567,6 +567,36 @@ export async function stopAllSitesCrawl(
   }
 }
 
+export async function publishAllSites(
+  data: Omit<SearchParams, "page" | "size">,
+) {
+  try {
+    await assertIsManager();
+
+    await dbConnect();
+
+    // 基于现有筛选条件构造查询，并强制只发布未发布站点
+    const query = generateSiteFilterQuery({
+      ...(data as any),
+      // generateSiteFilterQuery 需要 page/size，但不用于查询过滤逻辑，这里提供占位值
+      page: 1,
+      size: 1,
+    } as SearchParams);
+
+    // 仅发布未发布状态的站点
+    query.state = SiteState.unpublished;
+
+    await SiteModel.updateMany(query, {
+      $set: { state: SiteState.published, updatedAt: Date.now() },
+    });
+
+    return true;
+  } catch (error) {
+    console.log("Publish all sites error", error);
+    throw error;
+  }
+}
+
 /** Category */
 export async function saveCategory(category: Category) {
   try {
