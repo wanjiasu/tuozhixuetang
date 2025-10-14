@@ -1,5 +1,4 @@
 "use server";
-import { currentUser } from "@clerk/nextjs/server";
 import { FilterQuery } from "mongoose";
 import axios from "axios";
 
@@ -56,14 +55,8 @@ function categoryToObject(category: CategoryDocument) {
 }
 
 async function assertIsManager() {
-  const user = await currentUser();
-  const isManager = user?.id && AppConfig.manageUsers.includes(user.id);
-
-  if (!isManager) {
-    throw new Error("User not manager");
-  }
-
-  return user;
+  // 暂时取消用户登录与管理校验，使用占位管理用户
+  return { id: "manager" } as any;
 }
 
 export async function searchSites({
@@ -242,18 +235,13 @@ export async function getLatestSites(size = 12) {
 
 export async function submitReview(name: string, url: string) {
   try {
-    const user = await currentUser();
-
-    if (!user) {
-      throw new Error("User not signed");
-    }
     await dbConnect();
 
     await ReviewModel.create({
       name,
       url,
-      userId: user.id,
-      userEmail: user.primaryEmailAddress?.emailAddress,
+      userId: "anonymous",
+      userEmail: "anonymous@local",
     });
 
     return true;
@@ -327,44 +315,8 @@ export async function getSiteDetailByKey(siteKey: string) {
 
 export async function triggerUpvoteSite(siteId: string) {
   try {
-    const user = await currentUser();
-
-    if (!user) {
-      throw new Error("User not signed");
-    }
-    await dbConnect();
-
-    const site = await SiteModel.findOne({
-      _id: siteId,
-      state: SiteState.published,
-    });
-
-    if (!site) {
-      throw new Error("Site is null");
-    }
-
-    const upvoted = await UpvoteModel.exists({
-      userId: user.id,
-      targetId: siteId,
-      upvoteType: UpvoteType.site,
-    });
-
-    if (upvoted) {
-      await UpvoteModel.findByIdAndDelete(upvoted._id);
-    } else {
-      await UpvoteModel.create({
-        userId: user.id,
-        targetId: siteId,
-        upvoteType: UpvoteType.site,
-      });
-    }
-    site.voteCount = await UpvoteModel.countDocuments({
-      targetId: siteId,
-      upvoteType: UpvoteType.site,
-    });
-    await site.save();
-
-    return { upvoted: !upvoted, count: site.voteCount };
+    // 暂时关闭登录与点赞功能
+    throw new Error("Upvote disabled");
   } catch (error) {
     console.log("Upvote site error", error);
     throw error;
@@ -373,20 +325,8 @@ export async function triggerUpvoteSite(siteId: string) {
 
 export async function isUserUpVoteSite(siteId: string) {
   try {
-    const user = await currentUser();
-
-    if (!user) {
-      throw new Error("Not signed");
-    }
-    await dbConnect();
-
-    const existed = await UpvoteModel.exists({
-      targetId: siteId,
-      userId: user.id,
-      upvoteType: UpvoteType.site,
-    });
-
-    return !!existed;
+    // 登录关闭，默认不显示已点赞状态
+    return false;
   } catch (error) {
     console.log("Is user upvote site error", error);
   }

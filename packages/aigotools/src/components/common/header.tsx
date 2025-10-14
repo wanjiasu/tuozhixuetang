@@ -1,24 +1,9 @@
 "use client";
 import { useTranslations, useLocale } from "next-intl";
-import { Github, LogOut } from "lucide-react";
+import { Github } from "lucide-react";
 import clsx from "clsx";
-import {
-  Avatar,
-  Button,
-  Dropdown,
-  DropdownItem,
-  DropdownMenu,
-  DropdownTrigger,
-} from "@nextui-org/react";
-import {
-  SignInButton,
-  SignedIn,
-  SignedOut,
-  useAuth,
-  useUser,
-} from "@clerk/nextjs";
+import { Avatar, Button } from "@nextui-org/react";
 
-import { AppConfig } from "@/lib/config";
 import { Link } from "@/navigation";
 
 import Container from "./container";
@@ -30,12 +15,6 @@ export default function Header({ className }: { className?: string }) {
   const t = useTranslations("header");
 
   const locale = useLocale();
-
-  const user = useUser();
-  const { signOut } = useAuth();
-
-  const isManager =
-    user.user?.id && AppConfig.manageUsers.includes(user.user.id);
 
   const forceRedirectUrl =
     typeof window === "undefined"
@@ -76,57 +55,11 @@ export default function Header({ className }: { className?: string }) {
         </Link>
         <LanguageSwitcher />
         <ThemeSwitcher />
-        <SignedOut>
-          <SignInButton forceRedirectUrl={forceRedirectUrl} mode="modal">
-            <Button className="font-semibold" color="primary" size="sm">
-              {t("submit")}
-            </Button>
-          </SignInButton>
-          <SignInButton mode="modal">
-            <Button className="font-semibold" size="sm" variant="bordered">
-              {t("login")}
-            </Button>
-          </SignInButton>
-        </SignedOut>
-        <SignedIn>
-          <Link href={"/submit"}>
-            <Button className="font-semibold" color="primary" size="sm">
-              {t("submit")}
-            </Button>
-          </Link>
-          {/* {isManager && (
-            <Link href={"/dashboard"} target="_blank">
-              <Button
-                className="font-semibold"
-                color="primary"
-                size="sm"
-                variant="bordered"
-              >
-                {t("dashboard")}
-              </Button>
-            </Link>
-          )} */}
-          <Dropdown placement="bottom-end">
-            <DropdownTrigger>
-              <Avatar
-                alt={user.user?.fullName || ""}
-                className="cursor-pointer"
-                size="sm"
-                src={user.user?.imageUrl}
-              />
-            </DropdownTrigger>
-            <DropdownMenu>
-              <DropdownItem
-                key="logout"
-                className="text-danger-400 hover:!text-danger-500"
-                startContent={<LogOut size={14} strokeWidth={3} />}
-                onClick={() => signOut()}
-              >
-                Logout
-              </DropdownItem>
-            </DropdownMenu>
-          </Dropdown>
-        </SignedIn>
+        <Link href={"/submit"}>
+          <Button className="font-semibold" color="primary" size="sm">
+            {t("submit")}
+          </Button>
+        </Link>
       </div>
     </Container>
   );

@@ -1,5 +1,4 @@
 "use client";
-import { UserButton } from "@clerk/nextjs";
 import { useTranslations } from "next-intl";
 import clsx from "clsx";
 
@@ -59,8 +58,7 @@ export default function DashbpardLayout({
             );
           })}
         </div>
-        <div className="flex items-center justify-between mt-6 gap-2">
-          <UserButton />
+        <div className="flex items中心 justify-between mt-6 gap-2">
           <div className="flex-1" />
           <LanguageSwitcher />
           <ThemeSwitcher />
