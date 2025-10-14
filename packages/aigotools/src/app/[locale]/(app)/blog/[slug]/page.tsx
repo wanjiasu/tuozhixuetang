@@ -123,22 +123,22 @@ export default async function BlogPostPage({
             ))}
           </div>
 
-          <h1 className="text-4xl sm:text-5xl font-bold text-primary-800 mb-6">
+          <h1 className="text-3xl sm:text-4xl font-bold text-primary-800 mb-6">
             {post.title}
           </h1>
 
           <div className="flex items-center gap-4 mb-8">
             <div className="flex items-center gap-3">
-              {post.author.image && (
+              {post.author?.image && (
                 <img
-                  alt={post.author.name}
+                  alt={post.author?.name ?? "Unknown Author"}
                   className="w-12 h-12 rounded-full"
                   src={urlFor(post.author.image).width(48).height(48).url()}
                 />
               )}
               <div>
                 <div className="font-semibold text-primary-800">
-                  {post.author.name}
+                  {post.author?.name ?? "Unknown Author"}
                 </div>
                 <div className="text-primary-600 text-sm">
                   {new Date(post.publishedAt).toLocaleDateString("en-US", {
@@ -171,7 +171,7 @@ export default async function BlogPostPage({
                 image: ({ value }) => (
                   <img
                     alt={value.alt || "Article image"}
-                    className="rounded-lg shadow-md"
+                    className="mx-auto block rounded-lg shadow-md w-full max-w-[560px] sm:max-w-[480px]"
                     src={urlFor(value).width(800).url()}
                   />
                 ),
@@ -216,22 +216,22 @@ export default async function BlogPostPage({
         </div>
 
         {/* Author Bio */}
-        {post.author.bio && (
+        {post.author?.bio && (
           <div className="bg-primary-50 rounded-xl p-6 mt-12">
             <div className="flex items-start gap-4">
-              {post.author.image && (
+              {post.author?.image && (
                 <img
-                  alt={post.author.name}
+                  alt={post.author?.name ?? "Unknown Author"}
                   className="w-16 h-16 rounded-full"
                   src={urlFor(post.author.image).width(64).height(64).url()}
                 />
               )}
               <div>
                 <h3 className="text-xl font-semibold text-primary-800 mb-2">
-                  About {post.author.name}
+                  About {post.author?.name ?? "Unknown Author"}
                 </h3>
                 <div className="text-primary-600">
-                  <PortableText value={post.author.bio} />
+                  <PortableText value={post.author?.bio} />
                 </div>
               </div>
             </div>

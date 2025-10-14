@@ -116,9 +116,10 @@ export default async function BlogPage() {
                 </p>
                 <div className="flex items-center gap-4 mb-6">
                   <div className="flex items-center gap-2">
-                    {posts[0].author.image && (
+                    {/* Guard against null author */}
+                    {posts[0].author?.image && (
                       <img
-                        alt={posts[0].author.name}
+                        alt={posts[0].author?.name ?? "Author"}
                         className="w-8 h-8 rounded-full"
                         src={urlFor(posts[0].author.image)
                           .width(32)
@@ -127,7 +128,7 @@ export default async function BlogPage() {
                       />
                     )}
                     <span className="text-primary-700 font-medium">
-                      {posts[0].author.name}
+                      {posts[0].author?.name ?? "Author"}
                     </span>
                   </div>
                   <span className="text-primary-500">
@@ -213,9 +214,9 @@ export default async function BlogPage() {
                   </p>
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
-                      {post.author.image && (
+                      {post.author?.image && (
                         <img
-                          alt={post.author.name}
+                          alt={post.author?.name ?? "Author"}
                           className="w-6 h-6 rounded-full"
                           src={urlFor(post.author.image)
                             .width(24)
@@ -224,7 +225,7 @@ export default async function BlogPage() {
                         />
                       )}
                       <span className="text-primary-700 dark:text-primary-300 text-sm font-medium">
-                        {post.author.name}
+                        {post.author?.name ?? "Author"}
                       </span>
                     </div>
                     <span className="text-primary-500 dark:text-primary-400 text-sm">

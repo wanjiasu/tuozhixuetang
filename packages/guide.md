@@ -72,9 +72,124 @@ pnpm build && pnpm start
 ```bash
 # 在 /packages/crawler 目录下
 pnpm build && pnpm start:prod
+
+# playwright install
+pnpm exec playwright install  && pnpm exec playwright install-deps && pnpm build && pnpm start:prod
 ```
 
-### 方式二：Docker Compose (推荐) 🐳
+### 方式二：PM2 进程管理 ⚡
+
+#### 安装 PM2
+```bash
+# 全局安装 PM2
+npm install -g pm2
+```
+
+#### 前端服务
+```bash
+# 在 /packages/aigotools 目录下
+pnpm build
+
+# 使用 PM2 启动前端服务 (默认端口 3000)
+pm2 start npm --name "aigotools-frontend" -- start
+
+# 指定端口启动
+PORT=3000 pm2 start npm --name "aigotools-frontend" -- start
+
+# 或者使用 ecosystem 配置文件
+pm2 start ecosystem.config.js --only aigotools-frontend
+```
+
+#### 爬虫服务
+```bash
+# 在 /packages/crawler 目录下
+# 安装 playwright 依赖
+pnpm exec playwright install && pnpm exec playwright install-deps
+
+# 构建项目
+pnpm build
+
+# 使用 PM2 启动爬虫服务 (默认端口 13000)
+pm2 start npm --name "aigotools-crawler" -- run start:prod
+
+# 指定端口启动
+PORT=13000 pm2 start npm --name "aigotools-crawler" -- run start:prod
+
+# 或者使用 ecosystem 配置文件
+pm2 start ecosystem.config.js --only aigotools-crawler
+```
+
+#### PM2 常用管理命令
+```bash
+# 查看所有进程状态
+pm2 list
+
+# 查看进程详细信息
+pm2 show aigotools-frontend
+pm2 show aigotools-crawler
+
+# 查看日志
+pm2 logs aigotools-frontend
+pm2 logs aigotools-crawler
+
+# 重启服务
+pm2 restart aigotools-frontend
+pm2 restart aigotools-crawler
+
+# 停止服务
+pm2 stop aigotools-frontend
+pm2 stop aigotools-crawler
+
+# 删除进程
+pm2 delete aigotools-frontend
+pm2 delete aigotools-crawler
+
+# 保存当前进程列表
+pm2 save
+
+# 设置开机自启
+pm2 startup
+```
+
+#### PM2 配置文件 (ecosystem.config.js)
+在项目根目录创建 `ecosystem.config.js`：
+
+```javascript
+module.exports = {
+  apps: [
+    {
+      name: 'aigotools-frontend',
+      cwd: './packages/aigotools',
+      script: 'npm',
+      args: 'start',
+      instances: 1,
+      autorestart: true,
+      watch: false,
+      max_memory_restart: '1G',
+      env: {
+        NODE_ENV: 'production',
+        PORT: 3000
+      }
+    },
+    {
+      name: 'aigotools-crawler',
+      cwd: './packages/crawler',
+      script: 'npm',
+      args: 'run start:prod',
+      instances: 1,
+      autorestart: true,
+      watch: false,
+      max_memory_restart: '2G',
+      env: {
+        NODE_ENV: 'production',
+        PORT: 13000
+      }
+    }
+  ]
+};
+```
+
+### 方式三：Docker Compose (推荐) 🐳
 
 ```bash
 # 在项目根目录下运行
