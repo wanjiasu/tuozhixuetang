@@ -23,12 +23,14 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const isVercel = !!process.env.VERCEL;
+
   return (
     // eslint-disable-next-line jsx-a11y/html-has-lang
     <html suppressHydrationWarning>
       <body className={clsx(inter.className)}>
         {children}
-        <Analytics />
+        {isVercel && <Analytics />}
         <GoogleAnalytics gaId={AppConfig.googleAnalyticsID} />
       </body>
     </html>
