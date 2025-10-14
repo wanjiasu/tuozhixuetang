@@ -5,11 +5,6 @@ export const AppConfig = {
   siteUrl: (process.env.NEXT_PUBLIC_APP_URL as string) || "",
   siteName: (process.env.NEXT_PUBLIC_APP_NAME as string) || "",
 
-  // clerk
-  debugClerk: process.env.CLERK_DEBUG === "true",
-  manageUsers: (process.env.NEXT_PUBLIC_MANAGER_USER?.split(",") || []).filter(
-    Boolean,
-  ),
 
   // mongo
   mongoUri: (process.env.MONGODB_URI as string) || "",
@@ -52,4 +47,4 @@ export const AppConfig = {
       "utf8",
     ).toString("base64");
   },
-};
+}
