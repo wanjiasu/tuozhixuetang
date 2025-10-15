@@ -6,6 +6,7 @@ import "./globals.css";
 import { Viewport } from "next";
 
 import { AppConfig } from "../lib/config";
+import GAListener from "@/components/analytics/ga-listener";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,6 +25,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   const isVercel = !!process.env.VERCEL;
+  const gaId = AppConfig.googleAnalyticsID;
+  const isProd = process.env.NODE_ENV === "production";
 
   return (
     // eslint-disable-next-line jsx-a11y/html-has-lang
@@ -31,7 +34,12 @@ export default function RootLayout({
       <body className={clsx(inter.className)}>
         {children}
         {isVercel && <Analytics />}
-        <GoogleAnalytics gaId={AppConfig.googleAnalyticsID} />
+        {isProd && gaId && (
+          <>
+            <GoogleAnalytics gaId={gaId} />
+            <GAListener />
+          </>
+        )}
       </body>
     </html>
   );
