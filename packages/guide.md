@@ -21,8 +21,17 @@ aigotools/
 **目录：** `/packages/aigotools`
 
 ```bash
-# 安装依赖
+# 安装 Node.js 18+（建议 LTS），并启用 corepack 以使用 pnpm
+node -v    # 确认版本 >= 18
+corepack enable
+
+# 使用 pnpm 安装依赖
 pnpm install
+
+# 如果网络不稳定或存在证书问题（可选）
+npm config set fetch-retries 10
+# 仅在公司内网或自签证书场景使用，避免影响安全性
+npm config set strict-ssl false
 
 # 启动开发服务器
 pnpm dev
@@ -42,8 +51,19 @@ npm run dev
 **目录：** `/packages/crawler`
 
 ```bash
-# 安装依赖
+# 安装 Node.js 18+（建议 LTS），并启用 corepack 以使用 pnpm
+node -v    # 确认版本 >= 18
+corepack enable
+
+# 使用 pnpm 安装依赖
 pnpm install
+
+# （可选）安装 Nest CLI，便于开发调试
+npm install -g @nestjs/cli
+
+# （如需使用 Playwright 相关能力）安装浏览器
+# macOS 无需 install-deps，仅安装浏览器即可
+pnpm exec playwright install chromium
 
 # 启动开发服务器
 pnpm dev

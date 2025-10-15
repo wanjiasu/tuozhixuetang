@@ -1,5 +1,6 @@
 import { getTranslations } from "next-intl/server";
 import { Metadata } from "next";
+import { AppConfig } from "@/lib/config";
 
 import Container from "@/components/common/container";
 import { getFeaturedSites, getLatestSites } from "@/lib/actions";
@@ -12,7 +13,7 @@ export async function generateMetadata({
   const t = await getTranslations("tools");
 
   return {
-    title: "AI Tools Directory | AIverseTools",
+    title: `AI Tools Directory | ${AppConfig.siteName}`,
     description: "Search, filter, and find the perfect AI tool for any task.",
     keywords:
       "AI tools, artificial intelligence, productivity tools, AI directory",

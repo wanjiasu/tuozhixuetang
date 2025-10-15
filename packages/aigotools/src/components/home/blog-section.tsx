@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useTranslations } from "next-intl";
 
 import { urlFor } from "@/sanity/lib/image";
+import { AppConfig } from "@/lib/config";
 
 interface BlogPost {
   _id: string;
@@ -96,7 +97,7 @@ export default function BlogSection({ posts }: BlogSectionProps) {
                   <div className="flex items-center gap-2">
                     {post.author?.image && (
                       <img
-                        alt={post.author?.name ?? "Unknown Author"}
+                        alt={post.author?.name ?? AppConfig.siteName}
                         className="w-6 h-6 rounded-full"
                         src={urlFor(post.author.image)
                           .width(24)
@@ -105,7 +106,7 @@ export default function BlogSection({ posts }: BlogSectionProps) {
                       />
                     )}
                     <span className="text-primary-700 text-sm font-medium">
-                      {post.author?.name ?? "Unknown Author"}
+                      {post.author?.name ?? AppConfig.siteName}
                     </span>
                   </div>
                   <span className="text-primary-500 text-sm">

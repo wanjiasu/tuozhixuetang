@@ -1,5 +1,6 @@
 import { getTranslations } from "next-intl/server";
 import { Metadata } from "next";
+import { AppConfig } from "@/lib/config";
 
 import Container from "@/components/common/container";
 
@@ -11,7 +12,7 @@ export async function generateMetadata({
   const t = await getTranslations("glossary");
 
   return {
-    title: "AI Glossary | AI Terms & Definitions | AIverseTools",
+    title: `AI Glossary | AI Terms & Definitions | ${AppConfig.siteName}`,
     description:
       "Comprehensive glossary of AI terms, definitions, and concepts. Learn about artificial intelligence terminology.",
     keywords:

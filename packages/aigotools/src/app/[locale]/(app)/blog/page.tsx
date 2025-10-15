@@ -5,6 +5,7 @@ import Link from "next/link";
 import Container from "@/components/common/container";
 import { client } from "@/sanity/lib/client";
 import { urlFor } from "@/sanity/lib/image";
+import { AppConfig } from "@/lib/config";
 
 interface BlogPost {
   _id: string;
@@ -40,7 +41,7 @@ export async function generateMetadata({
   const t = await getTranslations("blog");
 
   return {
-    title: "AI Blog | Latest AI News & Insights | AIverseTools",
+    title: `AI Blog | Latest AI News & Insights | ${AppConfig.siteName}`,
     description:
       "Stay ahead with our latest articles, tutorials, and AI industry news.",
     keywords:
@@ -119,7 +120,7 @@ export default async function BlogPage() {
                     {/* Guard against null author */}
                     {posts[0].author?.image && (
                       <img
-                        alt={posts[0].author?.name ?? "Author"}
+                        alt={posts[0].author?.name ?? AppConfig.siteName}
                         className="w-8 h-8 rounded-full"
                         src={urlFor(posts[0].author.image)
                           .width(32)
@@ -128,7 +129,7 @@ export default async function BlogPage() {
                       />
                     )}
                     <span className="text-primary-700 font-medium">
-                      {posts[0].author?.name ?? "Author"}
+                      {posts[0].author?.name ?? AppConfig.siteName}
                     </span>
                   </div>
                   <span className="text-primary-500">
@@ -216,7 +217,7 @@ export default async function BlogPage() {
                     <div className="flex items-center gap-2">
                       {post.author?.image && (
                         <img
-                          alt={post.author?.name ?? "Author"}
+                          alt={post.author?.name ?? AppConfig.siteName}
                           className="w-6 h-6 rounded-full"
                           src={urlFor(post.author.image)
                             .width(24)
@@ -225,7 +226,7 @@ export default async function BlogPage() {
                         />
                       )}
                       <span className="text-primary-700 dark:text-primary-300 text-sm font-medium">
-                        {post.author?.name ?? "Author"}
+                        {post.author?.name ?? AppConfig.siteName}
                       </span>
                     </div>
                     <span className="text-primary-500 dark:text-primary-400 text-sm">

@@ -6,6 +6,7 @@ import { PortableText } from "next-sanity";
 import Container from "@/components/common/container";
 import { client } from "@/sanity/lib/client";
 import { urlFor } from "@/sanity/lib/image";
+import { AppConfig } from "@/lib/config";
 
 interface BlogPost {
   _id: string;
@@ -75,10 +76,10 @@ export async function generateMetadata({
   }
 
   return {
-    title: `${post.title} | AIverseTools Blog`,
+    title: `${post.title} | ${AppConfig.siteName} Blog`,
     description:
       post.body?.[0]?.children?.[0]?.text?.substring(0, 160) ||
-      "Read this article on AIverseTools blog.",
+      `Read this article on ${AppConfig.siteName} blog.`,
     keywords: post.categories?.map((cat) => cat.title).join(", ") || "AI, blog",
   };
 }
@@ -131,14 +132,14 @@ export default async function BlogPostPage({
             <div className="flex items-center gap-3">
               {post.author?.image && (
                 <img
-                  alt={post.author?.name ?? "Unknown Author"}
+                  alt={post.author?.name ?? AppConfig.siteName}
                   className="w-12 h-12 rounded-full"
                   src={urlFor(post.author.image).width(48).height(48).url()}
                 />
               )}
               <div>
                 <div className="font-semibold text-primary-800">
-                  {post.author?.name ?? "Unknown Author"}
+                  {post.author?.name ?? AppConfig.siteName}
                 </div>
                 <div className="text-primary-600 text-sm">
                   {new Date(post.publishedAt).toLocaleDateString("en-US", {
@@ -221,14 +222,14 @@ export default async function BlogPostPage({
             <div className="flex items-start gap-4">
               {post.author?.image && (
                 <img
-                  alt={post.author?.name ?? "Unknown Author"}
+                  alt={post.author?.name ?? AppConfig.siteName}
                   className="w-16 h-16 rounded-full"
                   src={urlFor(post.author.image).width(64).height(64).url()}
                 />
               )}
               <div>
                 <h3 className="text-xl font-semibold text-primary-800 mb-2">
-                  About {post.author?.name ?? "Unknown Author"}
+                  About {post.author?.name ?? AppConfig.siteName}
                 </h3>
                 <div className="text-primary-600">
                   <PortableText value={post.author?.bio} />
