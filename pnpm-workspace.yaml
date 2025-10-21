@@ -1,6 +1,13 @@
 packages:
-  - "packages/*"
+  - packages/*
 
 hoist-pattern:
   packages/aigotools:
-    - "*@nextui-org/*"
+    - '*@nextui-org/*'
+
+onlyBuiltDependencies:
+  - '@nestjs/core'
+  - es5-ext
+  - esbuild
+  - msgpackr-extract
+  - sharp
