@@ -24,26 +24,26 @@ export default function Header({ className }: { className?: string }) {
   return (
     <Container
       className={clsx(
-        "flex items-center justify-between h-20 sm:h-24",
+        "flex items-center justify-between h-20 sm:h-24 modern-card backdrop-blur-md bg-opacity-10 border-b border-white/10",
         className,
       )}
     >
       <Logo />
       <div className="hidden md:flex items-center gap-6 ml-8">
         <Link
-          className="text-primary hover:text-primary-600 font-medium transition-colors"
+          className="text-white/90 hover:text-white font-medium transition-all duration-300 hover:scale-105 neon-glow"
           href="/tools"
         >
           Tools
         </Link>
         <Link
-          className="text-primary hover:text-primary-600 font-medium transition-colors"
+          className="text-white/90 hover:text-white font-medium transition-all duration-300 hover:scale-105 neon-glow"
           href="/blog"
         >
           Blog
         </Link>
         <Link
-          className="text-primary hover:text-primary-600 font-medium transition-colors"
+          className="text-white/90 hover:text-white font-medium transition-all duration-300 hover:scale-105 neon-glow"
           href="/glossary"
         >
           Glossary
@@ -51,12 +51,15 @@ export default function Header({ className }: { className?: string }) {
       </div>
       <div className="flex items-center gap-2 sm:gap-4">
         <Link href={"https://github.com/someu/aigotools"} target="_blank">
-          <Github className="text-primary cursor-pointer" size={16} />
+          <Github className="text-white/80 hover:text-white cursor-pointer transition-all duration-300 hover:scale-110" size={16} />
         </Link>
         <LanguageSwitcher />
         <ThemeSwitcher />
         <Link href={"/submit"}>
-          <Button className="font-semibold" color="primary" size="sm">
+          <Button 
+            className="font-semibold bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105" 
+            size="sm"
+          >
             {t("submit")}
           </Button>
         </Link>

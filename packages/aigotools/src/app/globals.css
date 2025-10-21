@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 @layer base {
   :root {
     --transition-duration: 0.3s;
@@ -10,5 +9,59 @@
 
   html {
     transition: background-color var(--transition-duration), color var(--transition-duration);
+  }
+
+  body {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    min-height: 100vh;
+    color: #ffffff;
+  }
+
+  /* 城市天际线背景效果 */
+  .cityscape-bg {
+    position: relative;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    overflow: hidden;
+  }
+
+  .cityscape-bg::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 200px;
+    background: linear-gradient(to top, rgba(0,0,0,0.3) 0%, transparent 100%);
+    z-index: 1;
+  }
+
+  /* 现代化卡片样式 */
+  .modern-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    transition: all 0.3s ease;
+  }
+
+  .modern-card:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+  }
+
+  /* 渐变文字效果 */
+  .gradient-text {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* 霓虹灯效果 */
+  .neon-glow {
+    text-shadow: 0 0 5px rgba(102, 126, 234, 0.5),
+                 0 0 10px rgba(102, 126, 234, 0.3),
+                 0 0 15px rgba(102, 126, 234, 0.2);
   }
 }

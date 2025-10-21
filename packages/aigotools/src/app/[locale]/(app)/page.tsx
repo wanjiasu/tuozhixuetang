@@ -43,7 +43,7 @@ export default async function Page() {
   ]);
 
   return (
-    <>
+    <div className="cityscape-bg min-h-screen">
       <Container>
         <Hero />
         <Search />
@@ -51,6 +51,6 @@ export default async function Page() {
         <SiteGroup id="latest" sites={latestSites} title={t("latest")} />
       </Container>
       <BlogSection posts={blogPosts} />
-    </>
+    </div>
   );
 }

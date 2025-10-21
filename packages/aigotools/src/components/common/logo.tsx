@@ -15,7 +15,7 @@ export default function Logo({ className }: { className?: string }) {
     <Link href={"/"}>
       <h1
         className={clsx(
-          "text-primary-800 font-bold text-2xl sm:text-4xl leading-none",
+          "text-white font-bold text-2xl sm:text-4xl leading-none gradient-text neon-glow",
           className,
           istokWeb.className,
         )}

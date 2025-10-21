@@ -150,131 +150,133 @@ export default async function GlossaryPage() {
   );
 
   return (
-    <Container className="mt-4">
-      {/* Hero Section */}
-      <div className="text-center py-16 border-b border-primary-200">
-        <h1 className="text-4xl sm:text-5xl font-bold text-primary-800 mb-4">
-          AI Glossary
-        </h1>
-        <p className="text-primary-600 max-w-2xl mx-auto text-lg">
-          Comprehensive glossary of AI terms, definitions, and concepts. Learn
-          about artificial intelligence terminology.
-        </p>
-      </div>
-
-      {/* Search Only */}
-      <div className="bg-primary-50 p-6 rounded-xl my-10">
-        <div className="max-w-md mx-auto">
-          <input
-            className="w-full p-3 bg-white border border-primary-200 text-primary-800 rounded-lg text-base"
-            placeholder="Search terms..."
-            type="text"
-          />
+    <div className="cityscape-bg min-h-screen">
+      <Container className="mt-4">
+        {/* Hero Section */}
+        <div className="text-center py-16 border-b border-white/20">
+          <h1 className="text-4xl sm:text-5xl font-bold text-white gradient-text neon-glow mb-4">
+            AI Glossary
+          </h1>
+          <p className="text-white/80 max-w-2xl mx-auto text-lg">
+            Comprehensive glossary of AI terms, definitions, and concepts. Learn
+            about artificial intelligence terminology.
+          </p>
         </div>
-      </div>
 
-      {/* Alphabet Navigation */}
-      <div className="bg-white border border-primary-200 rounded-xl p-6 mb-10">
-        <h2 className="text-lg font-semibold text-primary-800 mb-4">
-          Jump to Letter
-        </h2>
-        <div className="flex flex-wrap gap-2">
-          {alphabet.map((letter) => {
-            const hasTerms = termsByLetter[letter]?.length > 0;
-
-            return (
-              <a
-                key={letter}
-                className={`w-10 h-10 flex items-center justify-center rounded-lg font-semibold transition-colors ${
-                  hasTerms
-                    ? "bg-primary-100 text-primary-700 hover:bg-primary-200 cursor-pointer"
-                    : "bg-gray-100 text-gray-400 cursor-not-allowed"
-                }`}
-                href={hasTerms ? `#letter-${letter}` : undefined}
-              >
-                {letter}
-              </a>
-            );
-          })}
+        {/* Search Only */}
+        <div className="modern-card p-6 my-10">
+          <div className="max-w-md mx-auto">
+            <input
+              className="w-full p-3 bg-white/10 border border-white/20 text-white placeholder-white/60 rounded-lg text-base focus:outline-none focus:border-white/40"
+              placeholder="Search terms..."
+              type="text"
+            />
+          </div>
         </div>
-      </div>
 
-      {/* Terms List */}
-      <div className="space-y-8 mb-16">
-        {Object.entries(termsByLetter)
-          .sort(([a], [b]) => a.localeCompare(b))
-          .map(([letter, terms]) => (
-            <div key={letter} className="scroll-mt-20" id={`letter-${letter}`}>
-              <h2 className="text-3xl font-bold text-primary-800 mb-6 pb-2 border-b-2 border-primary-200">
-                {letter}
-              </h2>
-              <div className="grid gap-6">
-                {terms.map((term) => (
-                  <div
-                    key={term.id}
-                    className="bg-white border border-primary-200 rounded-xl p-6 hover:shadow-lg transition-shadow"
-                  >
-                    <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
-                      <div className="flex-1">
-                        <h3 className="text-xl font-semibold text-primary-800 mb-2">
-                          {term.term}
-                        </h3>
-                        <p className="text-primary-600 leading-relaxed mb-3">
-                          {term.definition}
-                        </p>
-                        <span className="inline-block bg-primary-100 text-primary-700 px-3 py-1 rounded-full text-sm font-medium">
-                          {term.category}
-                        </span>
+        {/* Alphabet Navigation */}
+        <div className="modern-card p-6 mb-10">
+          <h2 className="text-lg font-semibold text-white gradient-text mb-4">
+            Jump to Letter
+          </h2>
+          <div className="flex flex-wrap gap-2">
+            {alphabet.map((letter) => {
+              const hasTerms = termsByLetter[letter]?.length > 0;
+
+              return (
+                <a
+                  key={letter}
+                  className={`w-10 h-10 flex items-center justify-center rounded-lg font-semibold transition-all duration-300 ${
+                    hasTerms
+                      ? "bg-gradient-to-r from-blue-500 to-purple-600 text-white hover:from-blue-600 hover:to-purple-700 hover:scale-105 cursor-pointer shadow-lg"
+                      : "bg-white/10 text-white/40 cursor-not-allowed"
+                  }`}
+                  href={hasTerms ? `#letter-${letter}` : undefined}
+                >
+                  {letter}
+                </a>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Terms List */}
+        <div className="space-y-8 mb-16">
+          {Object.entries(termsByLetter)
+            .sort(([a], [b]) => a.localeCompare(b))
+            .map(([letter, terms]) => (
+              <div key={letter} className="scroll-mt-20" id={`letter-${letter}`}>
+                <h2 className="text-3xl font-bold text-white gradient-text neon-glow mb-6 pb-2 border-b-2 border-white/20">
+                  {letter}
+                </h2>
+                <div className="grid gap-6">
+                  {terms.map((term) => (
+                    <div
+                      key={term.id}
+                      className="modern-card p-6 hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+                    >
+                      <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+                        <div className="flex-1">
+                          <h3 className="text-xl font-semibold text-white gradient-text mb-2">
+                            {term.term}
+                          </h3>
+                          <p className="text-white/80 leading-relaxed mb-3">
+                            {term.definition}
+                          </p>
+                          <span className="inline-block bg-gradient-to-r from-blue-500 to-purple-600 text-white px-3 py-1 rounded-full text-sm font-medium">
+                            {term.category}
+                          </span>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
-            </div>
-          ))}
-      </div>
-
-      {/* Suggest a Term */}
-      <div className="bg-primary-800 text-white rounded-2xl p-8 lg:p-12 text-center mb-16">
-        <h2 className="text-3xl font-bold mb-4">Missing a Term?</h2>
-        <p className="text-primary-200 mb-8 max-w-2xl mx-auto">
-          Can&apos;t find the AI term you&apos;re looking for? Suggest a new term and
-          we&apos;ll add it to our glossary.
-        </p>
-        <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-          <input
-            className="flex-1 px-4 py-3 rounded-lg text-primary-800 border-0 focus:ring-2 focus:ring-primary-300"
-            placeholder="Suggest a term..."
-            type="text"
-          />
-          <button className="bg-primary-600 hover:bg-primary-700 px-6 py-3 rounded-lg font-semibold transition-colors">
-            Suggest
-          </button>
+            ))}
         </div>
-      </div>
 
-      {/* Back to Top */}
-      <div className="text-center">
-        <a
-          className="inline-flex items-center gap-2 text-primary-600 hover:text-primary-700 font-medium"
-          href="#top"
-        >
-          <svg
-            className="w-4 h-4"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              d="M5 15l7-7 7 7"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
+        {/* Suggest a Term */}
+        <div className="modern-card text-center p-8 lg:p-12 mb-16">
+          <h2 className="text-3xl font-bold text-white gradient-text mb-4">Missing a Term?</h2>
+          <p className="text-white/80 mb-8 max-w-2xl mx-auto">
+            Can&apos;t find the AI term you&apos;re looking for? Suggest a new term and
+            we&apos;ll add it to our glossary.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+            <input
+              className="flex-1 px-4 py-3 bg-white/10 border border-white/20 text-white placeholder-white/60 rounded-lg focus:outline-none focus:border-white/40"
+              placeholder="Suggest a term..."
+              type="text"
             />
-          </svg>
-          Back to Top
-        </a>
-      </div>
-    </Container>
+            <button className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 hover:scale-105">
+              Suggest
+            </button>
+          </div>
+        </div>
+
+        {/* Back to Top */}
+        <div className="text-center">
+          <a
+            className="inline-flex items-center gap-2 text-white/80 hover:text-white font-medium transition-colors duration-300 neon-glow"
+            href="#top"
+          >
+            <svg
+              className="w-4 h-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M5 15l7-7 7 7"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+              />
+            </svg>
+            Back to Top
+          </a>
+        </div>
+      </Container>
+    </div>
   );
 }
