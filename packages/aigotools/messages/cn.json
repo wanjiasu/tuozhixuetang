@@ -6,7 +6,7 @@
     "dashboard": "控制台"
   },
   "footer": {
-    "slogan": "发现 10000+ 有用的AI工具",
+    "slogan": "发现10000+优质AI工具，开启智能学习新时代",
     "submitATool": "提交工具",
     "aboutUs": "关于我们",
     "contactUs": "联系我们",
@@ -24,7 +24,7 @@
     "categoryManage": "分类管理"
   },
   "index": {
-    "slogan": "探索AI工具的无限宇宙",
+    "slogan": "拓智学堂 - 智慧学习，无限可能",
     "featured": "推荐",
     "latest": "最新",
     "searchPlaceholder": "我想写一篇文章...",
@@ -32,9 +32,9 @@
     "more": "更多 +"
   },
   "metadata": {
-    "title": "aiversetools.com",
-    "description": "AIverseTools 是领先的AI目录和搜索引擎。AIverseTools 帮助您发现最佳AI、应用程序和服务列表，并提升您的个人和商业生产力至新高度。",
-    "keywords": "开源AI导航站, AI目录, AI列表, AI搜索引擎, 人工智能应用程序, 最佳AI目录, 最佳AI, AI列表"
+    "title": "拓智学堂 - 智慧学习平台",
+    "description": "拓智学堂是专业的AI工具学习平台，汇聚10000+优质AI工具资源，为学习者提供智能化的学习体验。发现最佳AI工具，提升学习效率，开启智慧学习新时代。",
+    "keywords": "拓智学堂, AI学习平台, AI工具目录, 智能学习, 人工智能教育, AI工具搜索, 学习资源, 智慧教育"
   },
   "site": {
     "categories": "分类",
@@ -65,7 +65,7 @@
     "title": "提交你的AI工具",
     "subTitle": "一键提交你的网站",
     "websiteName": "网站名称",
-    "websiteNamePlaceholder": "AIverseTools",
+    "websiteNamePlaceholder": "拓智学堂",
     "websiteUrl": "网站URL",
     "websiteUrlPlaceholder": "/",
     "submit": "提交",

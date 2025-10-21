@@ -6,7 +6,7 @@
     "dashboard": "Dashboard"
   },
   "footer": {
-    "slogan": "Search 10000+ Useful AI Tools By What You Need",
+    "slogan": "Discover 10000+ Premium AI Tools, Unlock the Era of Smart Learning",
     "submitATool": "Submit a Tool",
     "aboutUs": "About Us",
     "contactUs": "Contact Us",
@@ -24,7 +24,7 @@
     "categoryManage": "Category Manage"
   },
   "index": {
-    "slogan": "Navigate the Universe of AI",
+    "slogan": "TuoZhi Academy - Smart Learning, Infinite Possibilities",
     "featured": "Featured",
     "latest": "Latest",
     "searchPlaceholder": "i want to write an article...",
@@ -32,9 +32,9 @@
     "more": "More +"
   },
   "metadata": {
-    "title": "aiversetools.com",
-    "description": "AIverseTools is a leading AI tools directory and search engine. AIverseTools helps you discover the best AI tools,apps and services list and takes your personal and business productivity to the next level.",
-    "keywords": "Open source AI tools directory,AI tools directory, AI tool list, AI tools search engine, artificial inteligence applications,top ai tools, best ai tools directory, best ai tools, ai tools list"
+    "title": "TuoZhi Academy - Smart Learning Platform",
+    "description": "TuoZhi Academy is a professional AI tools learning platform, featuring 10000+ premium AI tool resources to provide learners with intelligent learning experiences. Discover the best AI tools, enhance learning efficiency, and unlock the era of smart learning.",
+    "keywords": "TuoZhi Academy, AI learning platform, AI tools directory, smart learning, artificial intelligence education, AI tools search, learning resources, intelligent education"
   },
   "site": {
     "categories": "Categories",
@@ -65,7 +65,7 @@
     "title": "Submit yout AI Tool",
     "subTitle": "Submit your website in one minute",
     "websiteName": "Website Name",
-    "websiteNamePlaceholder": "AIverseTools",
+    "websiteNamePlaceholder": "TuoZhi Academy",
     "websiteUrl": "Website Url",
     "websiteUrlPlaceholder": "/",
     "submit": "Submit",
